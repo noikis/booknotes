@@ -7,6 +7,7 @@ import 'codemirror/lib/codemirror.css';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/jsx/jsx';
 import 'codemirror/theme/material.css';
+import './codeEditor.css';
 
 interface CodeEditorProps {
   language: string;
@@ -24,20 +25,27 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
   };
 
   const onFormatClick = () => {
-    const formattedValue = prettier.format(value, {
-      parser: 'babel',
-      plugins: [parser],
-      useTabs: false,
-      semi: true,
-      singleQuote: true,
-    });
+    const formattedValue = prettier
+      .format(value, {
+        parser: 'babel',
+        plugins: [parser],
+        useTabs: false,
+        semi: true,
+        singleQuote: true,
+      })
+      .replace(/\n$/, '');
 
     onChange(formattedValue);
   };
 
   return (
-    <div className='editor-container'>
-      <button onClick={onFormatClick}>Format</button>
+    <div className='editor-wrapper'>
+      <button
+        className='button button-format is-primary is-small'
+        onClick={onFormatClick}
+      >
+        Format
+      </button>
       <ControlledEditor
         onBeforeChange={handleChange}
         value={value}

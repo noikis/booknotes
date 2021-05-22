@@ -1,6 +1,9 @@
+import 'bulmaswatch/superhero/bulmaswatch.min.css';
+
 import * as esbuild from 'esbuild-wasm';
 import { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
+
 import { unpkgPathPlugin } from './plugins/unpkg-path-plugin';
 import { fetchPlugin } from './plugins/fetch-plugin';
 import CodeEditor from './components/CodeEditor';
@@ -38,7 +41,6 @@ const App = () => {
       },
     });
 
-    // setCode(result.outputFiles[0].text);
     iframe.current.contentWindow.postMessage(result.outputFiles[0].text, '*');
   };
 
@@ -66,7 +68,9 @@ const App = () => {
     <div>
       <CodeEditor value={input} onChange={setInput} language='jsx' />
       <div>
-        <button onClick={onClick}>Submit</button>
+        <button className='button button-format is-primary' onClick={onClick}>
+          Submit
+        </button>
       </div>
       <iframe
         ref={iframe}
