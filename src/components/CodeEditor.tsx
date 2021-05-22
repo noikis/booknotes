@@ -1,12 +1,12 @@
 import React from 'react';
+import { Controlled as ControlledEditor, ICodeMirror } from 'react-codemirror2';
+import prettier from 'prettier';
+import parser from 'prettier/parser-babel';
 
 import 'codemirror/lib/codemirror.css';
-import 'codemirror/mode/xml/xml';
 import 'codemirror/mode/javascript/javascript';
-import 'codemirror/mode/css/css';
 import 'codemirror/mode/jsx/jsx';
 import 'codemirror/theme/material.css';
-import { Controlled as ControlledEditor, ICodeMirror } from 'react-codemirror2';
 
 interface CodeEditorProps {
   language: string;
@@ -23,8 +23,21 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
     onChange(value);
   };
 
+  const onFormatClick = () => {
+    const formattedValue = prettier.format(value, {
+      parser: 'babel',
+      plugins: [parser],
+      useTabs: false,
+      semi: true,
+      singleQuote: true,
+    });
+
+    onChange(formattedValue);
+  };
+
   return (
     <div className='editor-container'>
+      <button onClick={onFormatClick}>Format</button>
       <ControlledEditor
         onBeforeChange={handleChange}
         value={value}
@@ -35,6 +48,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
           mode: language,
           lineNumbers: true,
           theme: 'material',
+          tabSize: 2,
         }}
       />
     </div>
