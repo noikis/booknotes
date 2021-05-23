@@ -6,8 +6,6 @@ const App = () => {
   return (
     <div>
       <CodeCell />
-      <h3>Other</h3>
-      <CodeCell />
     </div>
   );
 };
