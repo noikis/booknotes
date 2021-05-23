@@ -39,9 +39,7 @@ const Preview: React.FC<PreviewProps> = ({ code }) => {
   const iframe = useRef<any>();
 
   useEffect(() => {
-    //iframe.current.srcdoc = html;
     iframe.current.contentWindow.postMessage(code, '*');
-    console.log('Preview render');
   }, [code]);
 
   return (
