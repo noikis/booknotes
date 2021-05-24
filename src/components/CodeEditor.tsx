@@ -13,12 +13,14 @@ interface CodeEditorProps {
   language: string;
   onChange(value: string): void;
   value: string;
+  bundlingError: string;
 }
 
 const CodeEditor: React.FC<CodeEditorProps> = ({
   language,
   onChange,
   value,
+  bundlingError,
 }) => {
   const handleChange = (editor: ICodeMirror, data: any, value: string) => {
     onChange(value);
@@ -40,12 +42,15 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
 
   return (
     <div className='editor-wrapper'>
-      <button
-        className='button button-format is-primary is-small'
-        onClick={onFormatClick}
-      >
-        Format
-      </button>
+      {!bundlingError && (
+        <button
+          className='button button-format is-primary is-small'
+          onClick={onFormatClick}
+        >
+          Format
+        </button>
+      )}
+
       <ControlledEditor
         onBeforeChange={handleChange}
         value={value}
