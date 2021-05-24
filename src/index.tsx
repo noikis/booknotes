@@ -1,11 +1,11 @@
 import 'bulmaswatch/superhero/bulmaswatch.min.css';
 import ReactDOM from 'react-dom';
-import MDEditor from '@uiw/react-md-editor';
+import TextEditor from './components/TextEditor';
 
 const App = () => {
   return (
     <div>
-      <MDEditor />
+      <TextEditor />
     </div>
   );
 };
