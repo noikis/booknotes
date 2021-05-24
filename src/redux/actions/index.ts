@@ -15,7 +15,7 @@ interface DeleteCellAction {
 }
 
 interface UpdateCellAction {
-  type: ActionType.DELETE_CELL;
+  type: ActionType.UPDATE_CELL;
   payload: {
     id: string;
     content: string;
