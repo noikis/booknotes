@@ -1,3 +1,4 @@
+import './TextEditor.css';
 import MDEditor from '@uiw/react-md-editor';
 import { useState, useEffect, useRef } from 'react';
 
@@ -6,12 +7,8 @@ const TextEditor: React.FC = () => {
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const listener = (event: MouseEvent) => {
-      if (
-        ref.current &&
-        event.target &&
-        ref.current.contains(event.target as Node)
-      ) {
+    const listener = (e: MouseEvent) => {
+      if (ref.current && e.target && ref.current.contains(e.target as Node)) {
         return;
       }
       setEditMode(false);
