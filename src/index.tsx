@@ -2,7 +2,7 @@ import 'bulmaswatch/superhero/bulmaswatch.min.css';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import TextEditor from './components/TextEditor';
+// import TextEditor from './components/TextEditor';
 import CodeCell from './components/CodeCell';
 import { store } from './redux';
 
