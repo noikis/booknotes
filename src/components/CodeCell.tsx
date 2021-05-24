@@ -31,7 +31,7 @@ const CodeCell = () => {
             bundlingError={err}
             value={input}
             onChange={setInput}
-            language='jsx'
+            language='javascript'
           />
         </Resizable>
         <Preview code={code} bundlingError={err} />
