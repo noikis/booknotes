@@ -1,11 +1,11 @@
 import 'bulmaswatch/superhero/bulmaswatch.min.css';
 import ReactDOM from 'react-dom';
-import CodeCell from './components/CodeCell';
+import MDEditor from '@uiw/react-md-editor';
 
 const App = () => {
   return (
     <div>
-      <CodeCell />
+      <MDEditor />
     </div>
   );
 };
