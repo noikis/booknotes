@@ -34,7 +34,12 @@ const Preview: React.FC<PreviewProps> = ({ code }) => {
   const iframe = useRef<any>();
 
   useEffect(() => {
-    iframe.current.contentWindow.postMessage(code, '*');
+    iframe.current.srcdoc = html;
+
+    // gives the iframe enough time the initialize and listen to postMessages
+    setTimeout(() => {
+      iframe.current.contentWindow.postMessage(code, '*');
+    }, 50);
   }, [code]);
 
   return (
