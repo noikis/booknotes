@@ -1,19 +1,18 @@
-import 'bulmaswatch/superhero/bulmaswatch.min.css';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import "bulmaswatch/superhero/bulmaswatch.min.css";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 
-// import TextEditor from './components/TextEditor';
-import CodeCell from './components/CodeCell';
-import { store } from './redux';
+import { store } from "./redux";
+import CellList from "./components/CellList";
 
 const App = () => {
   return (
     <Provider store={store}>
       <div>
-        <CodeCell />
+        <CellList />
       </div>
     </Provider>
   );
 };
 
-ReactDOM.render(<App />, document.querySelector('#root'));
+ReactDOM.render(<App />, document.querySelector("#root"));

@@ -2,6 +2,7 @@ import 'bulma/css/bulma.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const App = () => <h1>Hello Universe</h1>
-
+const App = () => {
+  return <h1 className="has-text-primar is-size-1">Hello Universe</h1>;
+};
 ReactDOM.render(<App />, document.querySelector('#root'));
