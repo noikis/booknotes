@@ -1,19 +1,27 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-import bundler from '../bundler';
-import CodeEditor from './CodeEditor';
-import Preview from './Preview';
-import Resizable from './Resizable';
+import bundler from "../bundler";
+import { Cell } from "../redux";
+import CodeEditor from "./CodeEditor";
+import Preview from "./Preview";
+import Resizable from "./Resizable";
+import { useActions } from "../hooks/useActions";
 
-const CodeCell = () => {
-  const [input, setInput] = useState('');
-  const [code, setCode] = useState('');
-  const [err, setErr] = useState('');
+interface CodeCellProps {
+  cell: Cell;
+}
+
+const CodeCell: React.FC<CodeCellProps> = ({ cell: { id, content } }) => {
+  //const [input, setInput] = useState("");
+  const [code, setCode] = useState("");
+  const [err, setErr] = useState("");
+
+  const { updateCell } = useActions();
 
   useEffect(() => {
     // bundle the code input after 1s
     const timer = setTimeout(async () => {
-      const output = await bundler(input);
+      const output = await bundler(content);
       setCode(output.code);
       setErr(output.err);
     }, 1000);
@@ -21,17 +29,17 @@ const CodeCell = () => {
     return () => {
       clearTimeout(timer);
     };
-  }, [input]);
+  }, [content]);
 
   return (
-    <Resizable direction='vertical'>
-      <div style={{ height: '100%', display: 'flex', flexDirection: 'row' }}>
-        <Resizable direction='horizontal'>
+    <Resizable direction="vertical">
+      <div style={{ height: "100%", display: "flex", flexDirection: "row" }}>
+        <Resizable direction="horizontal">
           <CodeEditor
             bundlingError={err}
-            value={input}
-            onChange={setInput}
-            language='javascript'
+            value={content}
+            onChange={(value) => updateCell(id, value)}
+            language="javascript"
           />
         </Resizable>
         <Preview code={code} bundlingError={err} />
