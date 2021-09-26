@@ -20,3 +20,19 @@ store.dispatch({
     id: null,
   },
 });
+
+store.dispatch({
+  type: ActionType.INSERT_CELL_BEFORE,
+  payload: {
+    type: "code",
+    id: null,
+  },
+});
+
+store.dispatch({
+  type: ActionType.INSERT_CELL_BEFORE,
+  payload: {
+    type: "text",
+    id: null,
+  },
+});
