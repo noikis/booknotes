@@ -1,3 +1,9 @@
+.code-cell-wrapper {
+  display: flex;
+  flex-direction: row;
+  height: calc(100% - 10px);
+}
+
 .preview-wrapper {
   height: 100%;
   background-color: white;
