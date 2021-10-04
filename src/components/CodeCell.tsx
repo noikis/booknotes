@@ -19,30 +19,37 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell: { id, content } }) => {
   const cumulativeCode = useTypedSelector(({ cells }) => {
     const orderedCells = cells?.order.map((id) => cells.data[id]);
 
-    // show function implementation
-    const cumulativeCode = [
-      `
-      import _React from "react";
-      import _ReactDOM from "react-dom";
-      const show = (value) => {
-        const root = document.getElementById("root");
+    const showFunc = `
+    import _React from "react";
+    import _ReactDOM from "react-dom";
+    var show = (value) => {
+      const root = document.getElementById("root");
 
-        if(typeof value === "object") {
-          if(value.$$typeof && value.props) {
-            _ReactDOM.render(value, root);
-          } else {
-            root.innerHTML = JSON.stringify(value);
-          }
+      if(typeof value === "object") {
+        if(value.$$typeof && value.props) {
+          _ReactDOM.render(value, root);
         } else {
-          root.innerHTML =  value;
+          root.innerHTML = JSON.stringify(value);
         }
-      };
-    `,
-    ];
+      } else {
+        root.innerHTML =  value;
+      }
+    };
+  `;
+    const showFuncEmpty = `var show = () => {}`;
 
-    // loop over previous code cells
+    // show function implementation
+    const cumulativeCode = [];
+
+    // loop over code cells
     for (let currentCell of orderedCells as Cell[]) {
       if (currentCell.type === "code") {
+        // only the current cell implements the show function
+        if (currentCell.id === id) {
+          cumulativeCode.push(showFunc);
+        } else {
+          cumulativeCode.push(showFuncEmpty);
+        }
         cumulativeCode.push(currentCell.content);
       }
       if (currentCell.id === id) {
