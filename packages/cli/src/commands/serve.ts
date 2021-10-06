@@ -1,8 +1,6 @@
+import { serve } from "local-api";
 import path from "path";
 import { Command } from "commander";
-
-import { serve } from "local-api";
-import { printError, printInfo } from "../helpers";
 
 export const serveCommand = new Command()
   // [filename]: optional value
@@ -19,16 +17,16 @@ export const serveCommand = new Command()
 
       await serve(port, path.basename(filename), dir);
 
-      printInfo(`Opened ${filename}.`);
-      printInfo(
+      console.log(`Opened ${filename}.`);
+      console.log(
         `Navigate to https://localhost:${options.port} to edit the file`
       );
     } catch (err: any) {
       // PORT ERROR
       if (err.code === "EADDRINUSE") {
-        printError("Port is in use. Try running on a different port.");
+        console.error("Port is in use. Try running on a different port.");
       } else {
-        printError(`Error:  ${err.message}`);
+        console.error("Error: ", err.message);
       }
 
       // Unsuccessful Run
