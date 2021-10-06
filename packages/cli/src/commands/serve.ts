@@ -10,10 +10,9 @@ export const serveCommand = new Command()
   // TODO: display options on command --help
   .option("-p, --port <number>", "port to run server on", "4005")
   .action((filename = "notebook.js", options: { port: string }) => {
+    const port = parseInt(options.port);
     // path of the dir where the file is saved
     const dir = path.join(process.cwd(), path.dirname(filename));
-
-    const port = parseInt(options.port);
 
     serve(port, path.basename(filename), dir);
   });
