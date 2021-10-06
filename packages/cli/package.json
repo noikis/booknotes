@@ -9,7 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "commander": "^8.2.0"
+    "commander": "^8.2.0",
+    "local-api": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "^16.10.3",

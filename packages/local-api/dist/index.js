@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function default_1() {
-    console.log("Server is listening!");
-}
-exports.default = default_1;
+exports.serve = void 0;
+var serve = function (port, filename, dir) {
+    console.log("Starting server at port", port);
+    console.log("fetching/savin  cells in file: ", filename);
+    console.log("directory: ", dir);
+};
+exports.serve = serve;
