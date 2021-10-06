@@ -40,9 +40,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.serveCommand = void 0;
-var local_api_1 = require("local-api");
 var path_1 = __importDefault(require("path"));
 var commander_1 = require("commander");
+var local_api_1 = require("local-api");
+var helpers_1 = require("../helpers");
 exports.serveCommand = new commander_1.Command()
     // [filename]: optional value
     .command("serve [filename]")
@@ -63,17 +64,17 @@ exports.serveCommand = new commander_1.Command()
                     return [4 /*yield*/, (0, local_api_1.serve)(port, path_1.default.basename(filename), dir)];
                 case 1:
                     _a.sent();
-                    console.log("Opened " + filename + ".");
-                    console.log("Navigate to https://localhost:" + options.port + " to edit the file");
+                    (0, helpers_1.printInfo)("Opened " + filename + ".");
+                    (0, helpers_1.printInfo)("Navigate to https://localhost:" + options.port + " to edit the file");
                     return [3 /*break*/, 3];
                 case 2:
                     err_1 = _a.sent();
                     // PORT ERROR
                     if (err_1.code === "EADDRINUSE") {
-                        console.error("Port is in use. Try running on a different port.");
+                        (0, helpers_1.printError)("Port is in use. Try running on a different port.");
                     }
                     else {
-                        console.error("Error: ", err_1.message);
+                        (0, helpers_1.printError)("Error:  " + err_1.message);
                     }
                     // Unsuccessful Run
                     process.exit(1);
