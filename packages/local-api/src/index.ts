@@ -2,6 +2,8 @@ import express from "express";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import path from "path";
 
+import { createCellsRouter } from "./routes/cells";
+
 export const serve = (
   port: number,
   filename: string,
@@ -31,6 +33,8 @@ export const serve = (
 
     app.use(express.static(path.dirname(modulePath)));
   }
+
+  app.use(createCellsRouter(filename, dir));
 
   // Wrapping Express listen with a Promise
   // To handle Errors
