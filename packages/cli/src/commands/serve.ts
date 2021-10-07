@@ -4,6 +4,8 @@ import { Command } from "commander";
 import { serve } from "local-api";
 import { printError, printInfo } from "../helpers";
 
+const isProduction = process.env.NODE_ENV === "production";
+
 export const serveCommand = new Command()
   // [filename]: optional value
   .command("serve [filename]")
@@ -17,7 +19,7 @@ export const serveCommand = new Command()
       // path of the dir where the file is saved
       const dir = path.join(process.cwd(), path.dirname(filename));
 
-      await serve(port, path.basename(filename), dir);
+      await serve(port, path.basename(filename), dir, !isProduction);
 
       printInfo(`Opened ${filename}.`);
       printInfo(
