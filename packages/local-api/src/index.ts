@@ -12,6 +12,8 @@ export const serve = (
 ) => {
   const app = express();
 
+  app.use(createCellsRouter(filename, dir));
+
   if (DEVELOPMENT_MODE) {
     /* Scenario 1: DEVELOPMENT MODE
      If it isn't a request to fetch/save cells then
@@ -33,8 +35,6 @@ export const serve = (
 
     app.use(express.static(path.dirname(modulePath)));
   }
-
-  app.use(createCellsRouter(filename, dir));
 
   // Wrapping Express listen with a Promise
   // To handle Errors
