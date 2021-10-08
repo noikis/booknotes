@@ -28,8 +28,12 @@ export const createCellsRouter = (filename: string, dir: string) => {
         // Create a file
         await fs.writeFile(filePath, "[]", encoding);
 
-        res.send([]);
-        // TODO: Add default Cells
+        const defaultCells = [
+          { id: "l7gq9", content: "", type: "code" },
+          { id: "bhwh3", content: "", type: "text" },
+        ];
+
+        res.send(defaultCells);
       } else {
         throw err;
       }

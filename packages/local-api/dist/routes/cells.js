@@ -51,7 +51,7 @@ var createCellsRouter = function (filename, dir) {
     var encoding = "utf-8";
     // Get a list of cells stored in a file (the file name is provided to the CLI)
     router.get("/cells", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var fileContent, err_1;
+        var fileContent, err_1, defaultCells;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -69,7 +69,11 @@ var createCellsRouter = function (filename, dir) {
                 case 3:
                     // Create a file
                     _a.sent();
-                    res.send([]);
+                    defaultCells = [
+                        { id: "l7gq9", content: "", type: "code" },
+                        { id: "bhwh3", content: "", type: "text" },
+                    ];
+                    res.send(defaultCells);
                     return [3 /*break*/, 5];
                 case 4: throw err_1;
                 case 5: return [3 /*break*/, 6];

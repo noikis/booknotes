@@ -1,1 +1,1 @@
-[{"id":"bhwh3","content":"~~Underline Mother Fucker~~","type":"text"},{"id":"l7gq9","content":"show('Hello Worddddfffffkffkmfdmmdfgggfgfdfdddddd');","type":"code"}]
+[{"id":"ju4ca","content":"import 'bulma/css/bulma.css';\nimport React from 'react';\nimport ReactDOM from 'react-dom';\n\nconst App = () => {\n  return <h1 className=\"has-text-primary is-size-1\">Hello Universe</h1>;\n};\nReactDOM.render(<App />, document.querySelector('#root'));","type":"code"},{"id":"l7gq9","content":"show(<h1>Heading</h1>);","type":"code"},{"id":"9yx55","content":"","type":"text"}]
